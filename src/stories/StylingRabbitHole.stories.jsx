@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { StyleSheet, Text, View } from 'react-native';
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-interface AnythingGoesPanelProps {
-  title: string;
-  message: string;
-  accentColor?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-  titleStyle?: StyleProp<TextStyle>;
-  messageStyle?: StyleProp<TextStyle>;
-}
+/**
+ * @typedef {object} AnythingGoesPanelProps
+ * @property {string} title
+ * @property {string} message
+ * @property {string} [accentColor]
+ * @property {import('react-native').StyleProp<import('react-native').ViewStyle>} [containerStyle]
+ * @property {import('react-native').StyleProp<import('react-native').TextStyle>} [titleStyle]
+ * @property {import('react-native').StyleProp<import('react-native').TextStyle>} [messageStyle]
+ */
 
+/** @param {AnythingGoesPanelProps} props */
 function AnythingGoesPanel({
   title,
   message,
@@ -18,7 +18,7 @@ function AnythingGoesPanel({
   containerStyle,
   titleStyle,
   messageStyle,
-}: AnythingGoesPanelProps) {
+}) {
   return (
     <View style={[styles.panel, { borderColor: accentColor }, containerStyle]}>
       <Text style={[styles.title, titleStyle]}>{title}</Text>
@@ -27,6 +27,7 @@ function AnythingGoesPanel({
   );
 }
 
+/** @type {import('@storybook/react-vite').Meta<typeof AnythingGoesPanel>} */
 const meta = {
   title: 'Teaching example/Styling rabbit hole (not exported)',
   component: AnythingGoesPanel,
@@ -41,7 +42,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'This Storybook-only anti-example is intentionally absent from src/index.ts. Compare its open-ended styling API with StatusCard’s semantic status prop.',
+          'This Storybook-only anti-example is intentionally absent from src/index.js. Compare its open-ended styling API with StatusCard’s semantic status prop.',
       },
     },
   },
@@ -51,12 +52,13 @@ const meta = {
     titleStyle: { control: 'object' },
     messageStyle: { control: 'object' },
   },
-} satisfies Meta<typeof AnythingGoesPanel>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-export const TooManyEscapeHatches: Story = {
+/** @type {Story} */
+export const TooManyEscapeHatches = {
   args: {
     containerStyle: { borderRadius: 32, borderWidth: 5, padding: 28 },
     titleStyle: { fontSize: 26, fontStyle: 'italic' },

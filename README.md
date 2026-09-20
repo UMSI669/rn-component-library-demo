@@ -10,7 +10,7 @@ There is no copy-and-paste step between the design-system site and the product.
 
 - `DemoButton`, `StatusCard`, and controlled `ChoiceChips` components
 - exported color, spacing, and radius tokens
-- TypeScript declarations plus ESM and CommonJS builds
+- JavaScript source plus generated editor declarations, ESM, and CommonJS builds
 - Storybook controls, actions, decorators, backgrounds, viewports, accessibility,
   autodocs, MDX, and interactive behavior examples
 - a GitHub Pages deployment workflow
@@ -35,7 +35,7 @@ npm pack --dry-run
 ## Install from GitHub
 
 ```sh
-npm install github:UMSI669/rn-component-library-demo#v1.0.0
+npm install github:UMSI669/rn-component-library-demo#v1.0.1
 ```
 
 ```tsx

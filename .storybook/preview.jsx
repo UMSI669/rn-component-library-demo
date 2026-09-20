@@ -1,10 +1,10 @@
-import type { Preview } from '@storybook/react-vite';
-import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 import { View } from 'react-native';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 
-import { tokens } from '../src/tokens';
+import { tokens } from '../src/tokens.js';
 
-const preview: Preview = {
+/** @type {import('@storybook/react-vite').Preview} */
+const preview = {
   decorators: [
     (Story) => (
       <View

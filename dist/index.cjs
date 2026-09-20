@@ -17,7 +17,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/index.ts
+// src/index.js
 var index_exports = {};
 __export(index_exports, {
   ChoiceChips: () => ChoiceChips,
@@ -27,10 +27,10 @@ __export(index_exports, {
 });
 module.exports = __toCommonJS(index_exports);
 
-// src/components/ChoiceChips.tsx
+// src/components/ChoiceChips.jsx
 var import_react_native = require("react-native");
 
-// src/tokens.ts
+// src/tokens.js
 var tokens = {
   color: {
     ink: "#172033",
@@ -64,14 +64,9 @@ var tokens = {
   }
 };
 
-// src/components/ChoiceChips.tsx
+// src/components/ChoiceChips.jsx
 var import_jsx_runtime = require("react/jsx-runtime");
-function ChoiceChips({
-  label,
-  options,
-  value,
-  onChange
-}) {
+function ChoiceChips({ label, options, value, onChange }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_react_native.View, { children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react_native.Text, { style: styles.label, children: label }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react_native.View, { style: styles.row, children: options.map((option) => {
@@ -132,7 +127,7 @@ var styles = import_react_native.StyleSheet.create({
   }
 });
 
-// src/components/DemoButton.tsx
+// src/components/DemoButton.jsx
 var import_react_native2 = require("react-native");
 var import_jsx_runtime2 = require("react/jsx-runtime");
 function DemoButton({
@@ -202,26 +197,44 @@ var styles2 = import_react_native2.StyleSheet.create({
   }
 });
 
-// src/components/StatusCard.tsx
+// src/components/StatusCard.jsx
 var import_react_native3 = require("react-native");
 var import_jsx_runtime3 = require("react/jsx-runtime");
-var statusLabels = {
-  info: "Info",
-  success: "Success",
-  warning: "Attention"
+var appearances = {
+  info: {
+    label: "Info",
+    backgroundColor: tokens.color.infoSoft,
+    borderColor: tokens.color.info,
+    ink: tokens.color.info
+  },
+  success: {
+    label: "Success",
+    backgroundColor: tokens.color.successSoft,
+    borderColor: tokens.color.success,
+    ink: tokens.color.success
+  },
+  warning: {
+    label: "Attention",
+    backgroundColor: tokens.color.warningSoft,
+    borderColor: tokens.color.warning,
+    ink: tokens.color.warning
+  }
 };
-function StatusCard({
-  title,
-  message,
-  status = "info"
-}) {
+function StatusCard({ title, message, status = "info" }) {
+  const appearance = appearances[status];
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
     import_react_native3.View,
     {
-      accessibilityLabel: `${statusLabels[status]}: ${title}. ${message}`,
-      style: [styles3.card, styles3[status]],
+      accessibilityLabel: `${appearance.label}: ${title}. ${message}`,
+      style: [
+        styles3.card,
+        {
+          backgroundColor: appearance.backgroundColor,
+          borderLeftColor: appearance.borderColor
+        }
+      ],
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react_native3.Text, { style: [styles3.eyebrow, styles3[`${status}Ink`]], children: statusLabels[status] }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react_native3.Text, { style: [styles3.eyebrow, { color: appearance.ink }], children: appearance.label }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react_native3.Text, { style: styles3.title, children: title }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react_native3.Text, { style: styles3.message, children: message })
       ]
@@ -235,21 +248,6 @@ var styles3 = import_react_native3.StyleSheet.create({
     maxWidth: 440,
     padding: tokens.spacing.lg
   },
-  info: {
-    backgroundColor: tokens.color.infoSoft,
-    borderLeftColor: tokens.color.info
-  },
-  success: {
-    backgroundColor: tokens.color.successSoft,
-    borderLeftColor: tokens.color.success
-  },
-  warning: {
-    backgroundColor: tokens.color.warningSoft,
-    borderLeftColor: tokens.color.warning
-  },
-  infoInk: { color: tokens.color.info },
-  successInk: { color: tokens.color.success },
-  warningInk: { color: tokens.color.warning },
   eyebrow: {
     fontSize: 12,
     fontWeight: "800",

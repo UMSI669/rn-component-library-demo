@@ -4,4 +4,4 @@ docs/
 .github/
 storybook-static/
 *.config.*
-tsconfig.json
+jsconfig*.json

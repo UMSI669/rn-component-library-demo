@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "strict": true,
-    "ignoreDeprecations": "6.0",
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -14,6 +15,6 @@
     "resolveJsonModule": true,
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": [".storybook", "src", "vitest.config.ts", "eslint.config.mjs"],
+  "include": [".storybook", "src", "vitest.config.js", "eslint.config.mjs"],
   "exclude": ["dist", "storybook-static", "node_modules"]
 }

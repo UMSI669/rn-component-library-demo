@@ -20,7 +20,7 @@ Set `STORYBOOK_BASE_PATH` to the repository path, including both slashes:
 ## Storybook reports a native module error
 
 Browser stories should use cross-platform React Native primitives. Confirm that
-the exact `react-native` alias in `.storybook/main.ts` still points to
+the exact `react-native` alias in `.storybook/main.js` still points to
 `react-native-web`.
 
 ## React reports an invalid hook call

@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fn, userEvent, within } from 'storybook/test';
 import { Text, View } from 'react-native';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { DemoButton } from './DemoButton';
+import { DemoButton } from './DemoButton.jsx';
 
+/** @type {import('@storybook/react-vite').Meta<typeof DemoButton>} */
 const meta = {
   title: 'Components/DemoButton',
   component: DemoButton,
@@ -33,28 +33,32 @@ const meta = {
     onPress: { action: 'pressed', table: { disable: true } },
     testID: { table: { disable: true } },
   },
-} satisfies Meta<typeof DemoButton>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-export const Primary: Story = {};
+/** @type {Story} */
+export const Primary = {};
 
-export const Secondary: Story = {
+/** @type {Story} */
+export const Secondary = {
   args: {
     label: 'Not now',
     variant: 'secondary',
   },
 };
 
-export const Disabled: Story = {
+/** @type {Story} */
+export const Disabled = {
   args: {
     label: 'Already submitted',
     disabled: true,
   },
 };
 
-export const OnDarkBackground: Story = {
+/** @type {Story} */
+export const OnDarkBackground = {
   args: {
     label: 'Continue',
     variant: 'secondary',
@@ -63,16 +67,17 @@ export const OnDarkBackground: Story = {
     backgrounds: { value: 'night' },
   },
   decorators: [
-    (Story) => (
+    (StoryComponent) => (
       <View style={{ gap: 12 }}>
         <Text style={{ color: 'white' }}>A story can add local context.</Text>
-        <Story />
+        <StoryComponent />
       </View>
     ),
   ],
 };
 
-export const InteractiveBehavior: Story = {
+/** @type {Story} */
+export const InteractiveBehavior = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Save draft' }));

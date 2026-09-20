@@ -1,8 +1,9 @@
-import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
+import process from 'node:process';
 
-const config: StorybookConfig = {
-  stories: ['../docs/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+/** @type {import('@storybook/react-vite').StorybookConfig} */
+const config = {
+  stories: ['../docs/**/*.mdx', '../src/**/*.stories.@(js|jsx)'],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
   framework: {
     name: '@storybook/react-vite',

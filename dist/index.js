@@ -1,7 +1,7 @@
-// src/components/ChoiceChips.tsx
+// src/components/ChoiceChips.jsx
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-// src/tokens.ts
+// src/tokens.js
 var tokens = {
   color: {
     ink: "#172033",
@@ -35,14 +35,9 @@ var tokens = {
   }
 };
 
-// src/components/ChoiceChips.tsx
+// src/components/ChoiceChips.jsx
 import { jsx, jsxs } from "react/jsx-runtime";
-function ChoiceChips({
-  label,
-  options,
-  value,
-  onChange
-}) {
+function ChoiceChips({ label, options, value, onChange }) {
   return /* @__PURE__ */ jsxs(View, { children: [
     /* @__PURE__ */ jsx(Text, { style: styles.label, children: label }),
     /* @__PURE__ */ jsx(View, { style: styles.row, children: options.map((option) => {
@@ -103,7 +98,7 @@ var styles = StyleSheet.create({
   }
 });
 
-// src/components/DemoButton.tsx
+// src/components/DemoButton.jsx
 import { Pressable as Pressable2, StyleSheet as StyleSheet2, Text as Text2 } from "react-native";
 import { jsx as jsx2 } from "react/jsx-runtime";
 function DemoButton({
@@ -173,26 +168,44 @@ var styles2 = StyleSheet2.create({
   }
 });
 
-// src/components/StatusCard.tsx
+// src/components/StatusCard.jsx
 import { StyleSheet as StyleSheet3, Text as Text3, View as View2 } from "react-native";
 import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
-var statusLabels = {
-  info: "Info",
-  success: "Success",
-  warning: "Attention"
+var appearances = {
+  info: {
+    label: "Info",
+    backgroundColor: tokens.color.infoSoft,
+    borderColor: tokens.color.info,
+    ink: tokens.color.info
+  },
+  success: {
+    label: "Success",
+    backgroundColor: tokens.color.successSoft,
+    borderColor: tokens.color.success,
+    ink: tokens.color.success
+  },
+  warning: {
+    label: "Attention",
+    backgroundColor: tokens.color.warningSoft,
+    borderColor: tokens.color.warning,
+    ink: tokens.color.warning
+  }
 };
-function StatusCard({
-  title,
-  message,
-  status = "info"
-}) {
+function StatusCard({ title, message, status = "info" }) {
+  const appearance = appearances[status];
   return /* @__PURE__ */ jsxs2(
     View2,
     {
-      accessibilityLabel: `${statusLabels[status]}: ${title}. ${message}`,
-      style: [styles3.card, styles3[status]],
+      accessibilityLabel: `${appearance.label}: ${title}. ${message}`,
+      style: [
+        styles3.card,
+        {
+          backgroundColor: appearance.backgroundColor,
+          borderLeftColor: appearance.borderColor
+        }
+      ],
       children: [
-        /* @__PURE__ */ jsx3(Text3, { style: [styles3.eyebrow, styles3[`${status}Ink`]], children: statusLabels[status] }),
+        /* @__PURE__ */ jsx3(Text3, { style: [styles3.eyebrow, { color: appearance.ink }], children: appearance.label }),
         /* @__PURE__ */ jsx3(Text3, { style: styles3.title, children: title }),
         /* @__PURE__ */ jsx3(Text3, { style: styles3.message, children: message })
       ]
@@ -206,21 +219,6 @@ var styles3 = StyleSheet3.create({
     maxWidth: 440,
     padding: tokens.spacing.lg
   },
-  info: {
-    backgroundColor: tokens.color.infoSoft,
-    borderLeftColor: tokens.color.info
-  },
-  success: {
-    backgroundColor: tokens.color.successSoft,
-    borderLeftColor: tokens.color.success
-  },
-  warning: {
-    backgroundColor: tokens.color.warningSoft,
-    borderLeftColor: tokens.color.warning
-  },
-  infoInk: { color: tokens.color.info },
-  successInk: { color: tokens.color.success },
-  warningInk: { color: tokens.color.warning },
   eyebrow: {
     fontSize: 12,
     fontWeight: "800",

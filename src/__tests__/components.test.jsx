@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ChoiceChips, DemoButton, StatusCard } from '../index';
+import { ChoiceChips, DemoButton, StatusCard } from '../index.js';
 
 describe('public components', () => {
   it('calls DemoButton onPress', () => {

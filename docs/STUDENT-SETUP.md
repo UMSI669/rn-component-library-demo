@@ -13,7 +13,8 @@ Working examples:
 - [Separate Expo consumer](https://github.com/UMSI669/rn-component-library-consumer)
 
 Use the examples as a map. Give your own library a different name, visual
-language, tokens, and components.
+language, tokens, and components. All authored source in this walkthrough is
+ordinary JavaScript.
 
 ## 1. Decide your names
 
@@ -39,8 +40,8 @@ The library repository needs four layers:
 
 ```text
 src/components/       React Native components
-src/tokens.ts          shared design decisions
-src/index.ts           supported public imports
+src/tokens.js          shared design decisions
+src/index.js           supported public imports
 dist/                  built package consumed by applications
 ```
 
@@ -52,7 +53,7 @@ Keep the token set small: a few colors, spacing values, and corner radii are
 enough to demonstrate that repeated decisions can live in one place.
 
 Reference the demo's
-[`src/index.ts` lines 1–13](https://github.com/UMSI669/rn-component-library-demo/blob/main/src/index.ts#L1-L13)
+[`src/index.js` lines 1–16](https://github.com/UMSI669/rn-component-library-demo/blob/main/src/index.js#L1-L16)
 for the public export boundary.
 
 ### Package configuration
@@ -62,21 +63,25 @@ Your root `package.json` should:
 - point `main`, `module`, `react-native`, `types`, and `exports` at `dist/`;
 - include `dist/` in the packaged files;
 - list React and React Native as peer dependencies;
-- contain scripts that build JavaScript and TypeScript declarations; and
+- contain scripts that build JavaScript and editor declarations; and
 - use `"private": true` if you do not intend to publish to npm.
 
 See the demo's
 [`package.json` entry points](https://github.com/UMSI669/rn-component-library-demo/blob/main/package.json#L8-L25),
-[`scripts`](https://github.com/UMSI669/rn-component-library-demo/blob/main/package.json#L34-L42),
-and [`peerDependencies`](https://github.com/UMSI669/rn-component-library-demo/blob/main/package.json#L44-L47).
+[`scripts`](https://github.com/UMSI669/rn-component-library-demo/blob/main/package.json#L34-L44),
+and [`peerDependencies`](https://github.com/UMSI669/rn-component-library-demo/blob/main/package.json#L46-L49).
 
 React and React Native can also appear in `devDependencies`: the library needs
 them to run its own examples. Their presence in `peerDependencies` tells an
 installed copy to use the application's framework instances.
 
+The `.d.ts` files in `dist/` are generated editor metadata. Students do not
+write or edit them. JSDoc comments in the JavaScript source provide the
+information used to create them.
+
 > Suggested AI prompt: “Review this package.json as an installable React Native
-> library. React and React Native must be peers, the build must produce ESM,
-> CommonJS, and declarations in dist, and the package will be installed from a
+> JavaScript library. React and React Native must be peers, the build must
+> produce ESM, CommonJS, and editor declarations in dist, and the package will be installed from a
 > Git tag rather than npm. Explain only changes that are necessary.”
 
 ## 3. Add browser-based Storybook
@@ -86,7 +91,7 @@ render them in a browser by mapping that package to `react-native-web` in its
 Vite configuration.
 
 See
-[`.storybook/main.ts` lines 4–25](https://github.com/UMSI669/rn-component-library-demo/blob/main/.storybook/main.ts#L4-L25).
+[`.storybook/main.js` lines 4–27](https://github.com/UMSI669/rn-component-library-demo/blob/main/.storybook/main.js#L4-L27).
 The `base` value is important when Storybook will live below a repository path
 such as `/my-component-library/`.
 
@@ -100,7 +105,7 @@ Create stories that help someone make a decision about a component:
 - demonstrate how a controlled component receives its value from a parent.
 
 The demo's controlled example is in
-[`ChoiceChips.stories.tsx` lines 14–68](https://github.com/UMSI669/rn-component-library-demo/blob/main/src/components/ChoiceChips.stories.tsx#L14-L68).
+[`ChoiceChips.stories.jsx` lines 12–69](https://github.com/UMSI669/rn-component-library-demo/blob/main/src/components/ChoiceChips.stories.jsx#L12-L69).
 
 Run Storybook locally:
 
@@ -121,8 +126,8 @@ The package inspection should contain `dist/`, declarations, `package.json`, and
 basic documentation—not Storybook or the complete development toolchain.
 
 > Suggested AI prompt: “Given this component and its props, propose a small set
-> of Storybook stories that demonstrate real design decisions. Include typed
-> Meta and StoryObj, useful controls, accessibility, and one controlled example.
+> of Storybook stories that demonstrate real design decisions. Use JavaScript
+> and JSDoc, plus useful controls, accessibility, and one controlled example.
 > Avoid creating dozens of nearly identical stories.”
 
 ## 4. Commit built package output and create a tag
@@ -183,7 +188,7 @@ https://OWNER.github.io/LIBRARY_REPO/
 Create the application outside the library repository:
 
 ```sh
-npx create-expo-app@latest YOUR_CONSUMER_REPO --template blank-typescript
+npx create-expo-app@latest YOUR_CONSUMER_REPO --template blank
 cd YOUR_CONSUMER_REPO
 npx expo install react-native-safe-area-context
 ```
@@ -195,7 +200,7 @@ npm install github:OWNER/LIBRARY_REPO#v1.0.0
 ```
 
 The dependency should appear like the demo's
-[`package.json` lines 22–29](https://github.com/UMSI669/rn-component-library-consumer/blob/main/package.json#L22-L29).
+[`package.json` lines 21–28](https://github.com/UMSI669/rn-component-library-consumer/blob/main/package.json#L21-L28).
 
 Import only from the package name:
 
@@ -207,9 +212,9 @@ Do not import from the library's `src/`, `dist/`, or individual file paths. The
 consumer should know the public package API, not the library's internal folders.
 
 The demo consumer shows package imports and state ownership in
-[`App.tsx` lines 8–30](https://github.com/UMSI669/rn-component-library-consumer/blob/main/App.tsx#L8-L30),
+[`App.js` lines 8–30](https://github.com/UMSI669/rn-component-library-consumer/blob/main/App.js#L8-L30),
 and current safe-area usage in
-[`App.tsx` lines 32–75](https://github.com/UMSI669/rn-component-library-consumer/blob/main/App.tsx#L32-L75).
+[`App.js` lines 32–75](https://github.com/UMSI669/rn-component-library-consumer/blob/main/App.js#L32-L75).
 
 Run the application checks:
 
@@ -258,7 +263,7 @@ lockfile. An existing tag continues to identify its original commit.
 - [ ] The library and consumer are separate repositories.
 - [ ] Components use shared tokens and have a deliberate public API.
 - [ ] React and React Native are peer dependencies of the library.
-- [ ] `dist/` contains JavaScript and TypeScript declarations.
+- [ ] `dist/` contains JavaScript and generated editor declarations.
 - [ ] Storybook builds locally from the actual React Native components.
 - [ ] GitHub Pages is manually enabled and the workflow succeeds.
 - [ ] The consumer dependency names a Git tag or complete commit SHA.

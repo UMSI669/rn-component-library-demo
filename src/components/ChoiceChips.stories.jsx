@@ -1,16 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-import { ChoiceChips } from './ChoiceChips';
-import type { ChoiceChipsProps } from './ChoiceChips';
+import { ChoiceChips } from './ChoiceChips.jsx';
 
 const paceOptions = [
   { label: 'Weekly', value: 'weekly' },
   { label: 'Monthly', value: 'monthly' },
   { label: 'Quarterly', value: 'quarterly' },
-] as const;
+];
 
+/** @type {import('@storybook/react-vite').Meta<typeof ChoiceChips>} */
 const meta = {
   title: 'Components/ChoiceChips',
   component: ChoiceChips,
@@ -39,7 +38,7 @@ const meta = {
     },
   },
   render: function ControlledChoiceChips(args) {
-    const [{ value }, updateArgs] = useArgs<ChoiceChipsProps>();
+    const [{ value }, updateArgs] = useArgs();
 
     return (
       <ChoiceChips
@@ -52,14 +51,16 @@ const meta = {
       />
     );
   },
-} satisfies Meta<typeof ChoiceChips>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-export const Controlled: Story = {};
+/** @type {Story} */
+export const Controlled = {};
 
-export const InteractiveBehavior: Story = {
+/** @type {Story} */
+export const InteractiveBehavior = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('radio', { name: 'Quarterly' }));

@@ -1,25 +1,19 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { tokens } from '../tokens';
+import { tokens } from '../tokens.js';
 
-export interface ChoiceChipOption {
-  label: string;
-  value: string;
-}
+/** @typedef {{ label: string, value: string }} ChoiceChipOption */
 
-export interface ChoiceChipsProps {
-  label: string;
-  options: readonly ChoiceChipOption[];
-  value: string;
-  onChange: (value: string) => void;
-}
+/**
+ * @typedef {object} ChoiceChipsProps
+ * @property {string} label
+ * @property {readonly ChoiceChipOption[]} options
+ * @property {string} value
+ * @property {(value: string) => void} onChange
+ */
 
-export function ChoiceChips({
-  label,
-  options,
-  value,
-  onChange,
-}: ChoiceChipsProps) {
+/** @param {ChoiceChipsProps} props */
+export function ChoiceChips({ label, options, value, onChange }) {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>

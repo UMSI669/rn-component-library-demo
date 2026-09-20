@@ -7,14 +7,14 @@ The consumer asks npm for a Git commit identified by a tag:
 ```json
 {
   "dependencies": {
-    "rn-component-library-demo": "github:UMSI669/rn-component-library-demo#v1.0.0"
+    "rn-component-library-demo": "github:UMSI669/rn-component-library-demo#v1.0.1"
   }
 }
 ```
 
 npm downloads that repository snapshot and exposes the package described by its
 root `package.json`. The committed `dist/` directory contains the JavaScript and
-types referenced by `main`, `react-native`, `types`, and `exports`.
+editor declarations referenced by `main`, `react-native`, `types`, and `exports`.
 
 This change allows `npm install` from your own GitHub repository instead of a
 public project listed on npm.

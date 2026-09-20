@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StatusCard } from './StatusCard.jsx';
 
-import { StatusCard } from './StatusCard';
-
+/** @type {import('@storybook/react-vite').Meta<typeof StatusCard>} */
 const meta = {
   title: 'Components/StatusCard',
   component: StatusCard,
@@ -27,14 +26,16 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof StatusCard>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-export const Success: Story = {};
+/** @type {Story} */
+export const Success = {};
 
-export const Information: Story = {
+/** @type {Story} */
+export const Information = {
   args: {
     title: 'Preview environment',
     message: 'The same native component is currently using react-native-web.',
@@ -42,7 +43,8 @@ export const Information: Story = {
   },
 };
 
-export const WarningOnCompactPhone: Story = {
+/** @type {Story} */
+export const WarningOnCompactPhone = {
   args: {
     title: 'Tag not updated',
     message: 'Consumers keep receiving the old build until a new tag is created.',

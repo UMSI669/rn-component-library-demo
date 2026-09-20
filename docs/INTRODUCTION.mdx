@@ -1,6 +1,6 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks';
-import * as ButtonStories from '../src/components/DemoButton.stories';
-import * as ChoiceStories from '../src/components/ChoiceChips.stories';
+import * as ButtonStories from '../src/components/DemoButton.stories.jsx';
+import * as ChoiceStories from '../src/components/ChoiceChips.stories.jsx';
 
 <Meta title="Start here/From design to dependency" />
 
@@ -26,8 +26,8 @@ story below acts as that parent, just as an application screen would.
 ## Follow the boundary
 
 1. Component source lives under `src/`.
-2. `src/index.ts` defines the supported public API.
-3. The build creates JavaScript and type declarations in `dist/`.
+2. `src/index.js` defines the supported public API.
+3. The build creates JavaScript and editor declarations in `dist/`.
 4. Another project installs a Git tag and imports from the package name.
 
 Suggested prompt: “Explain why a component library uses peer dependencies for

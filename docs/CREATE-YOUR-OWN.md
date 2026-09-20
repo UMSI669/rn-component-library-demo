@@ -1,7 +1,8 @@
 # Create your own library
 
 1. Start with one useful component and a small token file.
-2. Export the supported component and its prop types from `src/index.ts`.
+2. Export the supported component from `src/index.js` and describe its props
+   with JSDoc.
 3. Keep React and React Native in `peerDependencies`.
 4. Build JavaScript and declarations into `dist/`.
 5. Create stories from the real source, using controls to explore meaningful API

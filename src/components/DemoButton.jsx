@@ -1,25 +1,27 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import type { GestureResponderEvent } from 'react-native';
 
-import { tokens } from '../tokens';
+import { tokens } from '../tokens.js';
 
-export type DemoButtonVariant = 'primary' | 'secondary';
+/** @typedef {import('react-native').GestureResponderEvent} GestureResponderEvent */
+/** @typedef {'primary' | 'secondary'} DemoButtonVariant */
 
-export interface DemoButtonProps {
-  label: string;
-  onPress?: (event: GestureResponderEvent) => void;
-  variant?: DemoButtonVariant;
-  disabled?: boolean;
-  testID?: string;
-}
+/**
+ * @typedef {object} DemoButtonProps
+ * @property {string} label
+ * @property {(event: GestureResponderEvent) => void} [onPress]
+ * @property {DemoButtonVariant} [variant]
+ * @property {boolean} [disabled]
+ * @property {string} [testID]
+ */
 
+/** @param {DemoButtonProps} props */
 export function DemoButton({
   label,
   onPress,
   variant = 'primary',
   disabled = false,
   testID,
-}: DemoButtonProps) {
+}) {
   return (
     <Pressable
       accessibilityRole="button"

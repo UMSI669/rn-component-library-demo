@@ -29,6 +29,4 @@ export const tokens = {
     md: 12,
     pill: 999,
   },
-} as const;
-
-export type DesignTokens = typeof tokens;
+};
