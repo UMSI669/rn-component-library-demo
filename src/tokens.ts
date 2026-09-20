@@ -1,0 +1,34 @@
+export const tokens = {
+  color: {
+    ink: '#172033',
+    mutedInk: '#526078',
+    surface: '#FFFFFF',
+    canvas: '#F3F6FB',
+    border: '#CBD5E1',
+    brand: '#3157D5',
+    brandPressed: '#2341A4',
+    brandSoft: '#E8EEFF',
+    success: '#18794E',
+    successSoft: '#E9F8F0',
+    warning: '#9A6700',
+    warningSoft: '#FFF4CE',
+    info: '#2867B2',
+    infoSoft: '#E9F2FC',
+    white: '#FFFFFF',
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+    xxl: 32,
+  },
+  radius: {
+    sm: 8,
+    md: 12,
+    pill: 999,
+  },
+} as const;
+
+export type DesignTokens = typeof tokens;

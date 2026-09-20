@@ -1,0 +1,22 @@
+name: Verify library
+
+on:
+  pull_request:
+  push:
+    branches: ['**']
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      - run: npm run build-storybook
+        env:
+          STORYBOOK_BASE_PATH: /rn-component-library-demo/
+      - run: npm pack --dry-run

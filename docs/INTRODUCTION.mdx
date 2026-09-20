@@ -1,0 +1,34 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from '../src/components/DemoButton.stories';
+import * as ChoiceStories from '../src/components/ChoiceChips.stories';
+
+<Meta title="Start here/From design to dependency" />
+
+# From design to dependency
+
+These examples are not pictures of components. They are the components.
+Storybook renders the React Native source through `react-native-web`, while an
+Expo application installs the built package from GitHub.
+
+<Canvas of={ButtonStories.Primary} />
+
+Change the controls and watch the real component respond. Its allowed variants
+come from the library API, and its measurements and colors come from shared
+design tokens.
+
+## A parent can own the state
+
+`ChoiceChips` reports a new value, then its parent decides what to render. The
+story below acts as that parent, just as an application screen would.
+
+<Canvas of={ChoiceStories.Controlled} />
+
+## Follow the boundary
+
+1. Component source lives under `src/`.
+2. `src/index.ts` defines the supported public API.
+3. The build creates JavaScript and type declarations in `dist/`.
+4. Another project installs a Git tag and imports from the package name.
+
+Suggested prompt: “Explain why a component library uses peer dependencies for
+React and React Native, with a small dependency-tree example.”

@@ -1,0 +1,249 @@
+// src/components/ChoiceChips.tsx
+import { Pressable, StyleSheet, Text, View } from "react-native";
+
+// src/tokens.ts
+var tokens = {
+  color: {
+    ink: "#172033",
+    mutedInk: "#526078",
+    surface: "#FFFFFF",
+    canvas: "#F3F6FB",
+    border: "#CBD5E1",
+    brand: "#3157D5",
+    brandPressed: "#2341A4",
+    brandSoft: "#E8EEFF",
+    success: "#18794E",
+    successSoft: "#E9F8F0",
+    warning: "#9A6700",
+    warningSoft: "#FFF4CE",
+    info: "#2867B2",
+    infoSoft: "#E9F2FC",
+    white: "#FFFFFF"
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+    xxl: 32
+  },
+  radius: {
+    sm: 8,
+    md: 12,
+    pill: 999
+  }
+};
+
+// src/components/ChoiceChips.tsx
+import { jsx, jsxs } from "react/jsx-runtime";
+function ChoiceChips({
+  label,
+  options,
+  value,
+  onChange
+}) {
+  return /* @__PURE__ */ jsxs(View, { children: [
+    /* @__PURE__ */ jsx(Text, { style: styles.label, children: label }),
+    /* @__PURE__ */ jsx(View, { style: styles.row, children: options.map((option) => {
+      const selected = option.value === value;
+      return /* @__PURE__ */ jsx(
+        Pressable,
+        {
+          accessibilityLabel: option.label,
+          accessibilityRole: "radio",
+          accessibilityState: { checked: selected },
+          onPress: () => onChange(option.value),
+          style: ({ pressed }) => [
+            styles.chip,
+            selected ? styles.selectedChip : void 0,
+            pressed ? styles.pressedChip : void 0
+          ],
+          children: /* @__PURE__ */ jsx(Text, { style: [styles.chipLabel, selected ? styles.selectedLabel : void 0], children: option.label })
+        },
+        option.value
+      );
+    }) })
+  ] });
+}
+var styles = StyleSheet.create({
+  label: {
+    color: tokens.color.ink,
+    fontSize: 16,
+    fontWeight: "700",
+    marginBottom: tokens.spacing.sm
+  },
+  row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: tokens.spacing.sm
+  },
+  chip: {
+    backgroundColor: tokens.color.surface,
+    borderColor: tokens.color.border,
+    borderRadius: tokens.radius.pill,
+    borderWidth: 2,
+    paddingHorizontal: tokens.spacing.lg,
+    paddingVertical: tokens.spacing.sm
+  },
+  selectedChip: {
+    backgroundColor: tokens.color.brandSoft,
+    borderColor: tokens.color.brand
+  },
+  pressedChip: {
+    opacity: 0.72
+  },
+  chipLabel: {
+    color: tokens.color.mutedInk,
+    fontSize: 15,
+    fontWeight: "600"
+  },
+  selectedLabel: {
+    color: tokens.color.brand
+  }
+});
+
+// src/components/DemoButton.tsx
+import { Pressable as Pressable2, StyleSheet as StyleSheet2, Text as Text2 } from "react-native";
+import { jsx as jsx2 } from "react/jsx-runtime";
+function DemoButton({
+  label,
+  onPress,
+  variant = "primary",
+  disabled = false,
+  testID
+}) {
+  return /* @__PURE__ */ jsx2(
+    Pressable2,
+    {
+      accessibilityRole: "button",
+      accessibilityState: { disabled },
+      disabled,
+      onPress,
+      testID,
+      style: ({ pressed }) => [
+        styles2.button,
+        variant === "primary" ? styles2.primary : styles2.secondary,
+        pressed && !disabled ? styles2.pressed : void 0,
+        disabled ? styles2.disabled : void 0
+      ],
+      children: /* @__PURE__ */ jsx2(
+        Text2,
+        {
+          style: variant === "primary" ? styles2.primaryLabel : styles2.secondaryLabel,
+          children: label
+        }
+      )
+    }
+  );
+}
+var styles2 = StyleSheet2.create({
+  button: {
+    alignItems: "center",
+    borderRadius: tokens.radius.md,
+    borderWidth: 2,
+    justifyContent: "center",
+    minHeight: 48,
+    paddingHorizontal: tokens.spacing.xl,
+    paddingVertical: tokens.spacing.md
+  },
+  primary: {
+    backgroundColor: tokens.color.brand,
+    borderColor: tokens.color.brand
+  },
+  secondary: {
+    backgroundColor: tokens.color.surface,
+    borderColor: tokens.color.brand
+  },
+  pressed: {
+    opacity: 0.78
+  },
+  disabled: {
+    opacity: 0.45
+  },
+  primaryLabel: {
+    color: tokens.color.white,
+    fontSize: 16,
+    fontWeight: "700"
+  },
+  secondaryLabel: {
+    color: tokens.color.brand,
+    fontSize: 16,
+    fontWeight: "700"
+  }
+});
+
+// src/components/StatusCard.tsx
+import { StyleSheet as StyleSheet3, Text as Text3, View as View2 } from "react-native";
+import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
+var statusLabels = {
+  info: "Info",
+  success: "Success",
+  warning: "Attention"
+};
+function StatusCard({
+  title,
+  message,
+  status = "info"
+}) {
+  return /* @__PURE__ */ jsxs2(
+    View2,
+    {
+      accessibilityLabel: `${statusLabels[status]}: ${title}. ${message}`,
+      style: [styles3.card, styles3[status]],
+      children: [
+        /* @__PURE__ */ jsx3(Text3, { style: [styles3.eyebrow, styles3[`${status}Ink`]], children: statusLabels[status] }),
+        /* @__PURE__ */ jsx3(Text3, { style: styles3.title, children: title }),
+        /* @__PURE__ */ jsx3(Text3, { style: styles3.message, children: message })
+      ]
+    }
+  );
+}
+var styles3 = StyleSheet3.create({
+  card: {
+    borderLeftWidth: 6,
+    borderRadius: tokens.radius.md,
+    maxWidth: 440,
+    padding: tokens.spacing.lg
+  },
+  info: {
+    backgroundColor: tokens.color.infoSoft,
+    borderLeftColor: tokens.color.info
+  },
+  success: {
+    backgroundColor: tokens.color.successSoft,
+    borderLeftColor: tokens.color.success
+  },
+  warning: {
+    backgroundColor: tokens.color.warningSoft,
+    borderLeftColor: tokens.color.warning
+  },
+  infoInk: { color: tokens.color.info },
+  successInk: { color: tokens.color.success },
+  warningInk: { color: tokens.color.warning },
+  eyebrow: {
+    fontSize: 12,
+    fontWeight: "800",
+    letterSpacing: 0.8,
+    marginBottom: tokens.spacing.xs,
+    textTransform: "uppercase"
+  },
+  title: {
+    color: tokens.color.ink,
+    fontSize: 20,
+    fontWeight: "700",
+    marginBottom: tokens.spacing.xs
+  },
+  message: {
+    color: tokens.color.mutedInk,
+    fontSize: 16,
+    lineHeight: 23
+  }
+});
+export {
+  ChoiceChips,
+  DemoButton,
+  StatusCard,
+  tokens
+};
+//# sourceMappingURL=index.js.map
