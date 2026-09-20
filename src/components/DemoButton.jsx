@@ -2,46 +2,37 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { tokens } from '../tokens.js';
 
-/** @typedef {import('react-native').GestureResponderEvent} GestureResponderEvent */
-/** @typedef {'primary' | 'secondary'} DemoButtonVariant */
-
-/**
- * @typedef {object} DemoButtonProps
- * @property {string} label
- * @property {(event: GestureResponderEvent) => void} [onPress]
- * @property {DemoButtonVariant} [variant]
- * @property {boolean} [disabled]
- * @property {string} [testID]
- */
-
-/** @param {DemoButtonProps} props */
 export function DemoButton({
-  label,
-  onPress,
-  variant = 'primary',
-  disabled = false,
-  testID,
-}) {
+                             label,
+                             onPress,
+                             variant = 'primary',
+                             disabled = false,
+                             testID,
+                           }) {
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
-      disabled={disabled}
-      onPress={onPress}
-      testID={testID}
-      style={({ pressed }) => [
-        styles.button,
-        variant === 'primary' ? styles.primary : styles.secondary,
-        pressed && !disabled ? styles.pressed : undefined,
-        disabled ? styles.disabled : undefined,
-      ]}
-    >
-      <Text
-        style={variant === 'primary' ? styles.primaryLabel : styles.secondaryLabel}
+      <Pressable
+          accessibilityRole="button"
+          accessibilityState={{ disabled }}
+          disabled={disabled}
+          onPress={onPress}
+          testID={testID}
+          style={({ pressed }) => [
+            styles.button,
+            variant === 'primary' ? styles.primary : styles.secondary,
+            pressed && !disabled ? styles.pressed : undefined,
+            disabled ? styles.disabled : undefined,
+          ]}
       >
-        {label}
-      </Text>
-    </Pressable>
+        <Text
+            style={
+              variant === 'primary'
+                  ? styles.primaryLabel
+                  : styles.secondaryLabel
+            }
+        >
+          {label}
+        </Text>
+      </Pressable>
   );
 }
 

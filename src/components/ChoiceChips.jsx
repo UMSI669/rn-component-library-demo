@@ -2,46 +2,41 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { tokens } from '../tokens.js';
 
-/** @typedef {{ label: string, value: string }} ChoiceChipOption */
-
-/**
- * @typedef {object} ChoiceChipsProps
- * @property {string} label
- * @property {readonly ChoiceChipOption[]} options
- * @property {string} value
- * @property {(value: string) => void} onChange
- */
-
-/** @param {ChoiceChipsProps} props */
 export function ChoiceChips({ label, options, value, onChange }) {
   return (
-    <View>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.row}>
-        {options.map((option) => {
-          const selected = option.value === value;
+      <View>
+        <Text style={styles.label}>{label}</Text>
 
-          return (
-            <Pressable
-              accessibilityLabel={option.label}
-              accessibilityRole="radio"
-              accessibilityState={{ checked: selected }}
-              key={option.value}
-              onPress={() => onChange(option.value)}
-              style={({ pressed }) => [
-                styles.chip,
-                selected ? styles.selectedChip : undefined,
-                pressed ? styles.pressedChip : undefined,
-              ]}
-            >
-              <Text style={[styles.chipLabel, selected ? styles.selectedLabel : undefined]}>
-                {option.label}
-              </Text>
-            </Pressable>
-          );
-        })}
+        <View style={styles.row}>
+          {options.map((option) => {
+            const selected = option.value === value;
+
+            return (
+                <Pressable
+                    accessibilityLabel={option.label}
+                    accessibilityRole="radio"
+                    accessibilityState={{ checked: selected }}
+                    key={option.value}
+                    onPress={() => onChange(option.value)}
+                    style={({ pressed }) => [
+                      styles.chip,
+                      selected ? styles.selectedChip : undefined,
+                      pressed ? styles.pressedChip : undefined,
+                    ]}
+                >
+                  <Text
+                      style={[
+                        styles.chipLabel,
+                        selected ? styles.selectedLabel : undefined,
+                      ]}
+                  >
+                    {option.label}
+                  </Text>
+                </Pressable>
+            );
+          })}
+        </View>
       </View>
-    </View>
   );
 }
 

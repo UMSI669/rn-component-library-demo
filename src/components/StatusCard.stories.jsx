@@ -1,23 +1,32 @@
 import { StatusCard } from './StatusCard.jsx';
 
-/** @type {import('@storybook/react-vite').Meta<typeof StatusCard>} */
 const meta = {
   title: 'Components/StatusCard',
   component: StatusCard,
   tags: ['autodocs'],
+
+  // Set the default props shared by the stories below.
   args: {
     title: 'Library connected',
     message: 'This interface is rendered from the installed package.',
     status: 'success',
   },
+
+  // Configure how props appear in Storybook's Controls panel.
   argTypes: {
-    title: { control: 'text' },
-    message: { control: 'text' },
+    title: {
+      control: 'text',
+    },
+    message: {
+      control: 'text',
+    },
     status: {
       control: 'select',
       options: ['info', 'success', 'warning'],
     },
   },
+
+  // Add a component description to the generated documentation.
   parameters: {
     docs: {
       description: {
@@ -29,12 +38,11 @@ const meta = {
 };
 
 export default meta;
-/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-/** @type {Story} */
+// Use all the default props from the shared configuration.
 export const Success = {};
 
-/** @type {Story} */
+// Override the defaults to show an informational message.
 export const Information = {
   args: {
     title: 'Preview environment',
@@ -43,7 +51,7 @@ export const Information = {
   },
 };
 
-/** @type {Story} */
+// Show the warning state in the custom compact-phone viewport.
 export const WarningOnCompactPhone = {
   args: {
     title: 'Tag not updated',
@@ -51,6 +59,9 @@ export const WarningOnCompactPhone = {
     status: 'warning',
   },
   globals: {
-    viewport: { value: 'compactPhone', isRotated: false },
+    viewport: {
+      value: 'compactPhone',
+      isRotated: false,
+    },
   },
 };

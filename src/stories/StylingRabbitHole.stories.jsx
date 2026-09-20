@@ -1,16 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-/**
- * @typedef {object} AnythingGoesPanelProps
- * @property {string} title
- * @property {string} message
- * @property {string} [accentColor]
- * @property {import('react-native').StyleProp<import('react-native').ViewStyle>} [containerStyle]
- * @property {import('react-native').StyleProp<import('react-native').TextStyle>} [titleStyle]
- * @property {import('react-native').StyleProp<import('react-native').TextStyle>} [messageStyle]
- */
-
-/** @param {AnythingGoesPanelProps} props */
 function AnythingGoesPanel({
   title,
   message,
@@ -20,24 +9,33 @@ function AnythingGoesPanel({
   messageStyle,
 }) {
   return (
-    <View style={[styles.panel, { borderColor: accentColor }, containerStyle]}>
+    <View
+      style={[
+        styles.panel,
+        { borderColor: accentColor },
+        containerStyle,
+      ]}
+    >
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       <Text style={[styles.message, messageStyle]}>{message}</Text>
     </View>
   );
 }
 
-/** @type {import('@storybook/react-vite').Meta<typeof AnythingGoesPanel>} */
 const meta = {
   title: 'Teaching example/Styling rabbit hole (not exported)',
   component: AnythingGoesPanel,
   tags: ['autodocs'],
+
+  // Set the default props for this teaching example.
   args: {
     title: 'Everything is configurable',
     message:
       'That sounds flexible, but every screen can now quietly invent a different design.',
     accentColor: '#D14D72',
   },
+
+  // Explain the purpose of this anti-example in the generated documentation.
   parameters: {
     docs: {
       description: {
@@ -46,23 +44,41 @@ const meta = {
       },
     },
   },
+
+  // Configure the controls used to change the component's styling props.
   argTypes: {
-    accentColor: { control: 'color' },
-    containerStyle: { control: 'object' },
-    titleStyle: { control: 'object' },
-    messageStyle: { control: 'object' },
+    accentColor: {
+      control: 'color',
+    },
+    containerStyle: {
+      control: 'object',
+    },
+    titleStyle: {
+      control: 'object',
+    },
+    messageStyle: {
+      control: 'object',
+    },
   },
 };
 
 export default meta;
-/** @typedef {import('@storybook/react-vite').StoryObj<typeof meta>} Story */
 
-/** @type {Story} */
+// Demonstrate how many unrelated visual choices the API allows.
 export const TooManyEscapeHatches = {
   args: {
-    containerStyle: { borderRadius: 32, borderWidth: 5, padding: 28 },
-    titleStyle: { fontSize: 26, fontStyle: 'italic' },
-    messageStyle: { color: '#7A284E' },
+    containerStyle: {
+      borderRadius: 32,
+      borderWidth: 5,
+      padding: 28,
+    },
+    titleStyle: {
+      fontSize: 26,
+      fontStyle: 'italic',
+    },
+    messageStyle: {
+      color: '#7A284E',
+    },
   },
 };
 

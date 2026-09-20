@@ -2,23 +2,6 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { tokens } from '../tokens.js';
 
-/** @typedef {'info' | 'success' | 'warning'} StatusCardStatus */
-
-/**
- * @typedef {object} StatusCardProps
- * @property {string} title
- * @property {string} message
- * @property {StatusCardStatus} [status]
- */
-
-/**
- * @type {Record<StatusCardStatus, {
- *   label: string,
- *   backgroundColor: string,
- *   borderColor: string,
- *   ink: string
- * }>}
- */
 const appearances = {
   info: {
     label: 'Info',
@@ -40,7 +23,6 @@ const appearances = {
   },
 };
 
-/** @param {StatusCardProps} props */
 export function StatusCard({ title, message, status = 'info' }) {
   const appearance = appearances[status];
 
@@ -58,7 +40,9 @@ export function StatusCard({ title, message, status = 'info' }) {
       <Text style={[styles.eyebrow, { color: appearance.ink }]}>
         {appearance.label}
       </Text>
+
       <Text style={styles.title}>{title}</Text>
+
       <Text style={styles.message}>{message}</Text>
     </View>
   );
