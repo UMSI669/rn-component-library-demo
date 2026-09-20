@@ -13,8 +13,9 @@ tag, and update the consumer's dependency reference.
 ## Storybook works locally but GitHub Pages is blank
 
 Set `STORYBOOK_BASE_PATH` to the repository path, including both slashes:
-`/rn-component-library-demo/`. Also select **GitHub Actions** as the Pages source
-in the repository settings.
+`/rn-component-library-demo/`. Before rerunning the workflow, select
+**Settings → Pages → Build and deployment → Source → GitHub Actions**. The
+`Get Pages site failed: Not Found` error means this one-time setup is missing.
 
 ## Storybook reports a native module error
 

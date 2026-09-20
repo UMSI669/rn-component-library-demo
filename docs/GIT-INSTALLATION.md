@@ -33,6 +33,17 @@ git push origin main --tags
 Tags are readable names for exact commits. Updating files later does not alter
 what `#v1.0.0` installs; create a new tag for a new release.
 
+## Enable GitHub Pages once
+
+Before the first Pages workflow run, open the library repository on GitHub and
+select **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+This creates the Pages site that `actions/configure-pages` configures. Without
+that one-time setting, GitHub's Pages API returns `404 Not Found`.
+
+The workflow intentionally does not use `enablement: true`: automatic enablement
+requires a separate personal access token or GitHub App token with repository
+administration permission. The normal `GITHUB_TOKEN` is not sufficient.
+
 ## Commit references
 
 For an immutable dependency without a version tag, use the complete commit SHA:
