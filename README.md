@@ -48,6 +48,7 @@ That setting does not prevent installation from Git. See
 
 ## Short guides
 
+- [Student setup walkthrough](docs/STUDENT-SETUP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Create your own](docs/CREATE-YOUR-OWN.md)
 - [Git installation](docs/GIT-INSTALLATION.md)
